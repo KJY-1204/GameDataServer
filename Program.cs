@@ -176,7 +176,9 @@ app.MapGet("/monsters/big", (int count = 20000) =>
     return new { monsters = big };
 });
 
-app.Run("http://localhost:5000");
+// 바꾼 뒤 — PORT가 없으면(내 PC) 5000, 있으면(Render) 그 번호
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Run($"http://0.0.0.0:{port}");
 
 // ── 데이터 모양 — 1회차와 같다 ─────────────────────────────────────────
 class Monster
