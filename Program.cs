@@ -196,6 +196,7 @@ app.MapPost("/auth/login", (LoginRequest req) =>
 app.MapGet("/auth/me", (ClaimsPrincipal user) => new
 {
     player = user.FindFirst("sub")?.Value,
+    level = 1,   // 1.1.0: 레벨은 아직 저장하지 않고 1로 고정
     expiresAt = DateTimeOffset.FromUnixTimeSeconds(long.Parse(user.FindFirst("exp")!.Value))
 }).RequireAuthorization();
 
